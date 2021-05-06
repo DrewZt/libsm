@@ -263,7 +263,7 @@ impl EccCtx {
 
         match self.new_point(&x, &y) {
             Ok(p) => p,
-            Err(m) => panic!(m),
+            Err(m) => panic!("{}",m),
         }
     }
 
@@ -291,7 +291,7 @@ impl EccCtx {
         let neg_y = self.fctx.neg(&p.y);
         match self.new_jacobian(&p.x, &neg_y, &p.z) {
             Ok(neg_p) => neg_p,
-            Err(e) => panic!(e),
+            Err(e) => panic!("{}",e),
         }
     }
 
