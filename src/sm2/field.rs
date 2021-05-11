@@ -462,8 +462,8 @@ impl FieldElem {
 mod tests {
     use super::*;
 
-    use rand::os::OsRng;
-    use rand::Rng;
+    use rand::thread_rng;
+    use rand::RngCore;
 
     #[test]
     fn test_add() {
@@ -489,7 +489,7 @@ mod tests {
     }
 
     fn rand_elem() -> FieldElem {
-        let mut rng = OsRng::new().unwrap();
+        let mut rng = thread_rng();
         let mut buf: [u32; 8] = [0; 8];
         for v in buf.iter_mut().take(8) {
             *v = rng.next_u32();

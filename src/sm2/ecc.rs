@@ -17,8 +17,8 @@ use num_bigint::BigUint;
 use num_integer::Integer;
 use num_traits::*;
 
-use rand::os::OsRng;
-use rand::Rng;
+use rand::RngCore;
+use rand::thread_rng;
 
 pub struct EccCtx {
     fctx: FieldCtx,
@@ -448,7 +448,7 @@ impl EccCtx {
     }
 
     pub fn random_uint(&self) -> BigUint {
-        let mut rng = OsRng::new().unwrap();
+        let mut rng = thread_rng();
         let mut buf: [u8; 32] = [0; 32];
 
         let mut ret;
